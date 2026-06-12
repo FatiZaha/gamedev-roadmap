@@ -1,6 +1,12 @@
 # 🎮 GameDev Roadmap Tracker
 
-A comprehensive web application designed to guide aspiring game developers through a structured 6-month learning journey. This interactive roadmap helps you track progress, manage milestones, schedule study sessions, and master essential game development skills.
+## 🌟 Start Your Game Development Journey Today!
+
+**Dreaming of becoming a game developer but don't know where to start?** Are you overwhelmed by scattered online resources and expensive courses? **No problem!** 🚀 This web app is your all-in-one solution for learning game development from scratch! We've curated the **best 100% free resources** and organized them into a proven 6-month learning roadmap. Track your progress effortlessly, stay motivated with clear milestones, and know exactly what to learn next. Whether you're a complete beginner or looking to strengthen your game dev skills, our interactive roadmap guides you step-by-step through fundamentals, game engines, programming, graphics, audio, and deployment. **No hidden costs, no confusion—just a clear path to mastering game development!** Start your adventure today and join thousands of aspiring developers building amazing games. 🎮✨
+
+---
+
+A comprehensive web application designed to guide aspiring game developers through a structured 6-month learning journey. This interactive roadmap helps you track progress, manage milestones, sched[...]
 
 **Live Demo:** https://fatizaha.github.io/gamedev-roadmap/
 
