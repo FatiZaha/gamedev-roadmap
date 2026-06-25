@@ -15,7 +15,7 @@ export default function TaskItem({ task, isCompleted, onToggle, showUrl = true, 
     : { icon: 18, padding: 'py-2 px-1', text: 'text-sm' };
 
   return (
-    <div className={`flex items-center gap-2 ${sizeClasses.padding} group`}>
+    <div className={`flex items-center gap-2 ${sizeClasses.padding} group min-w-0`}>
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -31,7 +31,7 @@ export default function TaskItem({ task, isCompleted, onToggle, showUrl = true, 
         )}
       </button>
       
-      <span className={`flex-1 ${sizeClasses.text} ${
+      <span className={`flex-1 min-w-0 break-words ${sizeClasses.text} ${
         isCompleted ? 'text-gray-500 line-through' : 'text-gray-300'
       }`}>
         {task.title}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ViewType } from './types';
 import { useProgress } from './hooks/useProgress';
 import Sidebar from './components/Sidebar';
@@ -27,6 +27,22 @@ function App() {
     toggleSkillMastered,
     resetAllProgress,
   } = useProgress();
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    const closeMobileMenuOnDesktop = () => {
+      if (desktopQuery.matches) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    closeMobileMenuOnDesktop();
+    desktopQuery.addEventListener('change', closeMobileMenuOnDesktop);
+
+    return () => {
+      desktopQuery.removeEventListener('change', closeMobileMenuOnDesktop);
+    };
+  }, []);
 
   const handleNavigateToWeek = (week: number) => {
     setCurrentWeek(week);
@@ -147,6 +163,8 @@ function App() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-gray-400 hover:text-white transition-colors"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

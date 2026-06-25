@@ -35,7 +35,7 @@ export default function Sidebar({ currentView, setCurrentView, currentWeek, onRe
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <aside className={`fixed left-0 top-0 h-full bg-gray-900/95 backdrop-blur-xl border-r border-gray-800 z-50 transition-all duration-300 flex flex-col ${collapsed ? 'w-16' : 'w-64'}`}>
+    <aside className={`hidden lg:flex fixed left-0 top-0 h-full bg-gray-900/95 backdrop-blur-xl border-r border-gray-800 z-50 transition-all duration-300 flex-col ${collapsed ? 'w-16' : 'w-64'}`}>
       
       {/* Header */}
       <div className="p-4 border-b border-gray-800 flex items-center gap-3">

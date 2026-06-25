@@ -55,15 +55,15 @@ export default function Dashboard({
   const scheduleDays = Object.values(progress.weeklySchedule).filter(Boolean).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 min-w-0">
       {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 rounded-2xl p-6">
+      <div className="bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 rounded-2xl p-4 sm:p-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-white mb-1">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-white mb-1 break-words">
               Game Dev Roadmap Tracker
             </h1>
-            <p className="text-gray-400">
+            <p className="text-sm sm:text-base text-gray-400 break-words">
               Week {progress.currentWeek} of 24 &middot; Month {currentWeekData.month}: {months[currentWeekData.month - 1].name}
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function Dashboard({
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard
           icon={<CheckCircle2 size={20} />}
           label="Tasks Done"
@@ -107,7 +107,7 @@ export default function Dashboard({
       </div>
 
       {/* Month Progress */}
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-white flex items-center gap-2">
             <TrendingUp size={18} className="text-violet-400" />
@@ -120,8 +120,8 @@ export default function Dashboard({
               key={mp.month}
               className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-300">M{mp.month}: {mp.name}</span>
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <span className="text-sm font-medium text-gray-300 min-w-0 break-words">M{mp.month}: {mp.name}</span>
                 <span className="text-sm font-mono text-gray-400">{mp.percentage}%</span>
               </div>
               <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -137,17 +137,18 @@ export default function Dashboard({
       </div>
 
       {/* Current Week & Upcoming Tasks */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Current Week Focus */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white flex items-center gap-2">
-              <Calendar size={18} className="text-violet-400" />
-              Week {currentWeekData.weekNumber}: {currentWeekData.phase}
+        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6 min-w-0">
+          <div className="flex items-start justify-between gap-3 mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-white flex items-start gap-2 min-w-0">
+              <Calendar size={18} className="text-violet-400 flex-shrink-0 mt-0.5" />
+              <span className="min-w-0 break-words">Week {currentWeekData.weekNumber}: {currentWeekData.phase}</span>
             </h2>
             <button
               onClick={() => onNavigateToWeek(progress.currentWeek)}
-              className="text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-violet-400 hover:text-violet-300 transition-colors flex-shrink-0"
+              aria-label={`Open week ${progress.currentWeek}`}
             >
               <ArrowRight size={18} />
             </button>
@@ -162,7 +163,7 @@ export default function Dashboard({
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {currentWeekData.learn.map((topic, i) => (
-                  <span key={i} className="px-2.5 py-1 bg-blue-500/10 text-blue-300 rounded-full text-xs border border-blue-500/20">
+                  <span key={i} className="px-2.5 py-1 bg-blue-500/10 text-blue-300 rounded-full text-xs border border-blue-500/20 max-w-full break-words">
                     {topic}
                   </span>
                 ))}
@@ -179,7 +180,7 @@ export default function Dashboard({
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {currentWeekData.practice.map((item, i) => (
-                  <span key={i} className="px-2.5 py-1 bg-emerald-500/10 text-emerald-300 rounded-full text-xs border border-emerald-500/20">
+                  <span key={i} className="px-2.5 py-1 bg-emerald-500/10 text-emerald-300 rounded-full text-xs border border-emerald-500/20 max-w-full break-words">
                     {item}
                   </span>
                 ))}
@@ -196,7 +197,7 @@ export default function Dashboard({
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {currentWeekData.courses.map((course, i) => (
-                  <span key={i} className="px-2.5 py-1 bg-purple-500/10 text-purple-300 rounded-full text-xs border border-purple-500/20">
+                  <span key={i} className="px-2.5 py-1 bg-purple-500/10 text-purple-300 rounded-full text-xs border border-purple-500/20 max-w-full break-words">
                     {course}
                   </span>
                 ))}
@@ -210,9 +211,9 @@ export default function Dashboard({
         </div>
 
         {/* Upcoming Tasks */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <Target size={18} className="text-emerald-400" />
+        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6 min-w-0">
+          <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <Target size={18} className="text-emerald-400 flex-shrink-0" />
             Upcoming Tasks
           </h2>
           {upcomingTasks.length > 0 ? (
@@ -248,24 +249,24 @@ export default function Dashboard({
       </div>
 
       {/* Milestones Overview */}
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Trophy size={18} className="text-amber-400" />
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6">
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <h2 className="text-base sm:text-lg font-semibold text-white flex items-center gap-2 min-w-0">
+            <Trophy size={18} className="text-amber-400 flex-shrink-0" />
             Portfolio Milestones
           </h2>
           <button
             onClick={onNavigateToMilestones}
-            className="text-violet-400 hover:text-violet-300 text-sm transition-colors flex items-center gap-1"
+            className="text-violet-400 hover:text-violet-300 text-sm transition-colors flex items-center gap-1 flex-shrink-0"
           >
             View All <ArrowRight size={14} />
           </button>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-5 gap-3">
           {milestones.map((ms) => (
             <div
               key={ms.id}
-              className={`p-4 rounded-xl border text-center transition-all ${
+              className={`p-3 sm:p-4 rounded-xl border text-center transition-all min-w-0 ${
                 progress.milestonesCompleted[ms.id]
                   ? 'bg-emerald-500/10 border-emerald-500/30'
                   : 'bg-gray-800/50 border-gray-700/50'
@@ -277,17 +278,17 @@ export default function Dashboard({
               }`}>
                 Week {ms.week}
               </div>
-              <p className="text-xs text-gray-300 font-medium">{ms.title}</p>
+              <p className="text-xs text-gray-300 font-medium break-words">{ms.title}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Resources Section */}
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-        <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <Zap size={18} className="text-yellow-400" />
-          Resources for {currentWeekData.phase}
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6">
+        <h2 className="text-base sm:text-lg font-semibold text-white mb-4 flex items-start gap-2 min-w-0">
+          <Zap size={18} className="text-yellow-400 flex-shrink-0 mt-0.5" />
+          <span className="min-w-0 break-words">Resources for {currentWeekData.phase}</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {phaseResources[currentWeekData.phase]?.map((resourceTitle, i) => {
@@ -310,7 +311,7 @@ export default function Dashboard({
                   {resource.type === 'book' && <BookOpen size={14} />}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-white group-hover:text-yellow-300 transition-colors truncate">
+                  <div className="text-sm font-medium text-white group-hover:text-yellow-300 transition-colors break-words">
                     {resource.title}
                   </div>
                   <div className="text-xs text-gray-500 capitalize">{resource.type}</div>
